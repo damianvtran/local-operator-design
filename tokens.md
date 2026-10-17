@@ -81,7 +81,7 @@ All three are pinned to those exact ratios inside
 mute button: change the token and the pinned value stops matching, the script
 fails, and the argument above has to be made again on the new number.
 
-**The floors are executable.** `node docs/design-kit/contrast-contract.mjs`
+**The floors are executable.** `node contrast-contract.mjs`
 recomputes every permitted pair and every component triple in both themes — 669
 assertions — and exits non-zero on a violation. Run it after changing one hex.
 That is the mechanism; this table is only its documentation.

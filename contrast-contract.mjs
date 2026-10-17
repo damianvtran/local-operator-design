@@ -2,7 +2,7 @@
 /**
  * The contrast contract, executable.
  *
- *     node docs/design-kit/contrast-contract.mjs
+ *     node contrast-contract.mjs
  *
  * Reads ./tokens.json, recomputes every foreground x ground pair this system
  * permits, and asserts the floors in tokens.md § 1. Exits non-zero on a
