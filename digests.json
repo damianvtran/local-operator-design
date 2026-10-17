@@ -1,0 +1,27 @@
+{
+  "kit": "damianvtran/local-operator-design",
+  "version": "1.1.0",
+  "algorithm": "sha256",
+  "scope": "every file tracked by git except digests.json itself; a consumer's lock records the kit ref plus the per-file hashes below",
+  "files": {
+    ".github/workflows/ci.yml": "433a2998baee149d4453841021f6abc1d8be58cb90add984994dbbc223a08529",
+    "LICENSE": "a6668f1445a2abbecaa08e48d8137b0a691958618c6ce9dd95fb5b77d87653a8",
+    "README.md": "1f2a453a6d2a4c11b8498064b734ce3095ddecfdafb39b7e146ca8c13fd6f379",
+    "app-family.json": "c6b91c441ee09f70d869881d5c7053c3abb9ce2aa7016a7bb77eed4c5527c6e6",
+    "components.md": "0c9fdf1ba46b8b26320a9d0611c846e0546c5908b26db90a1d44a1234b765851",
+    "contrast-contract.mjs": "efba65759c094395c64f77002d588c847fb4807535a789b8174d5a2891042885",
+    "divergences.json": "d97bfbdb0dd5c2617cba6172de2348fdb58a57cbdb3bcdb0dee97bb25b6d35c7",
+    "handoff-local-operator-ui.md": "88fa5fdd7df806a207f50a481796cfeefcf8f66219f66c9fce3f1932dd3db13c",
+    "motion.md": "e152b4d78981bfa4db43bd81811a33511316045d347c70611a318864fe941ee8",
+    "tokens.css": "297559c9b8698d6e390b737686683a4b2bd64f8f2490f2fe84703c1df7c9a5d5",
+    "tokens.json": "2747c04e2eeccf67ef0a91f36e0c6785d307cd6210f129c084d4d19212184bf7",
+    "tokens.md": "04d4481a9b949c25220a757bd9989901d49c233c72f7f413986e8878fe27b3de",
+    "tools/check-divergences.mjs": "3d23f67eb0f297b37ce27e2915c69000d2c21826be49cbb5b22065d7bd120e5a",
+    "tools/digests.mjs": "ea8a864303673fbfcf02577cabd0c6a08cbdf336433b59cc4244afc3b26a0178",
+    "tools/extract-app-family.mjs": "e3806ff6f58e3f9216b5dea369738093d04d81adf2cbfaeefe5a2f364a3a0308",
+    "tools/generate-tokens.mjs": "ccaeae64af3fed3c9df890b9e580ec3518cfd8b2dec4ce1fb9199b93eb0e0d00",
+    "tools/tokens-css.template": "75373f9a7c167274a961081f3a909cb14c6967033ac17814df0a901a998054a1",
+    "typography.md": "fb09219cbf47aafee43eb761d2e279cbba2b9163a0ca5c921a3477e7b2b63aaf",
+    "voice.md": "96c11444e96cf6038a2186e80c09369270cf74e9f3fcca901022a4cae696827b"
+  }
+}

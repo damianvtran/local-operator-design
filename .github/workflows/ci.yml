@@ -1,0 +1,42 @@
+# The kit's own gates. Zero installs, zero dependencies: every step is a plain
+# `node` command over the committed files, so a fork or an external reviewer can
+# run the identical checks with a stock Node and this checkout alone.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # The kit's original contract: every permitted foreground x ground pair
+      # and component triple, recomputed from tokens.json. Exits non-zero on a
+      # violation.
+      - name: Contrast contract
+        run: node contrast-contract.mjs
+      # tokens.json -> tokens.css must reproduce the committed bytes; tokens.md
+      # must agree on every colour value. Derived from tokens.json; no hand
+      # lists.
+      - name: Tokens consistency (json / css / md)
+        run: node tools/generate-tokens.mjs --check
+      # Every sanctioned cross-surface divergence, each pinned against
+      # tokens.json and app-family.json.
+      - name: Divergence register
+        run: node tools/check-divergences.mjs
+      # SHA-256 per published file — the values consumers' lock files pin.
+      - name: File digests
+        run: node tools/digests.mjs --check
+      # Not run here by design: tools/extract-app-family.mjs --check needs the
+      # desktop app's repository to read the pinned refs from. It is a local /
+      # release-time check; its result (app-family.json) is committed, and every
+      # other step above already gates that file (digests, register assertions).

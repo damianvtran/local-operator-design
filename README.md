@@ -18,6 +18,85 @@ with no arguments.
 
 ---
 
+## This repository: the home of record
+
+This kit was extracted from the marketing site's repository (where it lived at
+`docs/design-kit/`, split from `local-operator-site` at `b936429d` with its
+history followed) into **`damianvtran/local-operator-design`** — the public home
+of record for the shared brand register. Two additions come with the move:
+
+- **[`app-family.json`](./app-family.json)** — the desktop app's two brand
+  palettes and the palette role contract as data, extracted from
+  `damianvtran/local-operator-ui` at a pinned ref by
+  [`tools/extract-app-family.mjs`](./tools/extract-app-family.mjs). Values are
+  read by executing the palette module (never re-typed); `--check` re-runs the
+  extraction and fails on any drift from the pin. The contract section names all
+  39 `ThemePalette` members in declaration order — `mode`, plus the 38 colour
+  roles the contract's own header counts.
+- **[`divergences.json`](./divergences.json)** — every sanctioned difference
+  between surfaces in one checked list: the light accent, the light ground ramp,
+  the `info` role, and the light-mode `success` / `on-accent` values that had no
+  recorded home before. Each entry pins its recorded values against
+  `tokens.json` and `app-family.json` via
+  [`tools/check-divergences.mjs`](./tools/check-divergences.mjs), so a
+  divergence cannot outlive the values it describes.
+
+Two mechanical edits to the ten kit files came with the move, both scripted and
+reviewable as their own change: run commands that named `docs/design-kit/<file>`
+now name the file at this repository's root, and `tokens.css` is now generated
+from `tokens.json` (`node tools/generate-tokens.mjs`), with the committed bytes
+verified byte-identical to the split commit's. Nothing else changed;
+[`digests.json`](./digests.json) records the SHA-256 of every published file.
+
+### Version and releases
+
+`tokens.json` `$meta.version` continues the kit's own lineage: **1.1.0** is the
+version inherited from the site. This repository's first release is **v1.2.0**
+— the release that carries the app-family file and the divergence register; it
+is cut after an independent review round, and until it exists, consumers pin a
+commit. Consumers track **tags**; a pin bump (tag or commit) is a deliberate
+change in the consumer, with its reason recorded — never a floating fetch.
+
+### Consuming this kit: pin and lock
+
+Consumption is a **pinned slice plus a parity gate**, never a build-time import.
+A consumer commits the kit files it uses as byte copies under its own tree,
+together with a lock naming the kit version, the git ref, and a SHA-256 per
+consumed file — the hashes come from [`digests.json`](./digests.json). The
+lock's shape, as consumers write it:
+
+```json
+{
+  "kit": "damianvtran/local-operator-design",
+  "version": "1.2.0",
+  "ref": "v1.2.0",
+  "files": { "tokens.json": "<sha256>", "app-family.json": "<sha256>" }
+}
+```
+
+A consumer's CI then proves two things: the slice equals the kit at the locked
+ref (a public→public fetch; no credentials belong in it), and the consumer's own
+token file derives from the slice (local and cheap). A pin that goes stale *with
+a recorded reason is a settled state, not drift; one that goes stale without one
+is the failure this repository exists to make visible.
+
+### The editorial flow
+
+**Register changes start here.** A colour or role change lands in the kit first
+— with its measurement, and with the divergence register updated if it adds a
+sanctioned difference — and the site and every other consumer follow in the same
+wave, each behind its own parity check. A sanctioned difference that lands in a
+consumer without a register entry is the failure mode this repository exists to
+prevent: if a surface genuinely needs a new one, it is recorded in
+[`divergences.json`](./divergences.json) first.
+
+Everything above is gated by this repository's CI — the contrast contract, the
+`tokens.json` ↔ `tokens.css` ↔ `tokens.md` consistency check, the divergence
+register and the digests — all plain `node` commands with no dependencies (see
+[`.github/workflows/ci.yml`](./.github/workflows/ci.yml)).
+
+---
+
 ## What this is not
 
 - **Not the website's specification.** That is `../design-language.md`,
@@ -61,7 +140,7 @@ being confused for each other is why this table now says which is which.
 | 1 | [`tokens.md`](./tokens.md) | You need a value, or you need to know why a value is what it is. Every token, its computed contrast ratio, and the contrast floors the system holds. **Everything else binds to a name defined here.** |
 | 1a | [`tokens.json`](./tokens.json) | You are generating theme code or a lint rule. Machine-readable, same values. A sibling of `tokens.md`, not a step of its own. |
 | 1b | [`tokens.css`](./tokens.css) | You want the tokens working in five minutes on any stack. Framework-neutral custom properties, the space scale, and the light/dark switching contract. |
-| 1c | [`contrast-contract.mjs`](./contrast-contract.mjs) | You changed a colour, or you want the floors as something you can run rather than something you have to trust. `node docs/design-kit/contrast-contract.mjs`. |
+| 1c | [`contrast-contract.mjs`](./contrast-contract.mjs) | You changed a colour, or you want the floors as something you can run rather than something you have to trust. `node contrast-contract.mjs`. |
 | 2 | [`typography.md`](./typography.md) | You are setting type: the step table, the three families and why each, the optical-size axis, where monospace is mandatory and where it is forbidden, self-hosting and OFL licensing. |
 | 3 | [`motion.md`](./motion.md) | Anything moves. Durations, easings, scroll-linked patterns, the `prefers-reduced-motion` contract, and the anti-patterns. **Before `components.md`**, which cites it on every transition. |
 | 4 | [`components.md`](./components.md) | You are building a control. Anatomy, variants, sizes and all eight interaction states for every primitive; the focus ring and its two exceptions; form controls, tables, empty and loading states, overlays and focus management, direction and forced colours. |
@@ -208,13 +287,15 @@ handoff was type-checked under `tsc --strict` against `@mui/material@6.4.2` **an
 executed**, with the resulting theme object inspected — that is where its
 breakpoint, `action.focus` and `augmentColor` corrections came from.
 
-**Maintenance.** If a value in `src/index.css` changes, this kit is stale. Update
-[`tokens.md`](./tokens.md), [`tokens.json`](./tokens.json) and
-[`tokens.css`](./tokens.css) together — they are still kept byte-consistent by
-hand — and then **run the contract**:
+**Maintenance.** If a register value changes anywhere in the family, this kit
+moves first (or follows in the same wave — see **This repository: the home of
+record** above). Update [`tokens.json`](./tokens.json), run
+`node tools/generate-tokens.mjs` to regenerate [`tokens.css`](./tokens.css)
+from it, update [`tokens.md`](./tokens.md) where it states the value — and then
+**run the contract**:
 
 ```
-node docs/design-kit/contrast-contract.mjs
+node contrast-contract.mjs
 ```
 
 It reads `tokens.json`, recomputes every foreground × ground pair the system
@@ -246,7 +327,7 @@ needs a loader. This is the whole loader:
 ```js
 import { readFileSync } from "node:fs";
 
-const T = JSON.parse(readFileSync("docs/design-kit/tokens.json", "utf8"));
+const T = JSON.parse(readFileSync("tokens.json", "utf8"));
 
 /** Every colour token flattened to `name -> hex` for one theme. */
 export const colors = (theme /* "light" | "dark" */) =>
