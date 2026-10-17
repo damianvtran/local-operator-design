@@ -4,7 +4,7 @@
   "algorithm": "sha256",
   "scope": "every file tracked by git except digests.json itself; a consumer's lock records the kit ref plus the per-file hashes below",
   "files": {
-    ".github/workflows/ci.yml": "433a2998baee149d4453841021f6abc1d8be58cb90add984994dbbc223a08529",
+    ".github/workflows/ci.yml": "7835363e02d1bea9bd0b5d32d7d8bd93762ca3bddd0a039ae9a2f34f6809e277",
     "LICENSE": "a6668f1445a2abbecaa08e48d8137b0a691958618c6ce9dd95fb5b77d87653a8",
     "README.md": "1f2a453a6d2a4c11b8498064b734ce3095ddecfdafb39b7e146ca8c13fd6f379",
     "app-family.json": "c6b91c441ee09f70d869881d5c7053c3abb9ce2aa7016a7bb77eed4c5527c6e6",
