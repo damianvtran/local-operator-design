@@ -1,12 +1,12 @@
 {
   "kit": "damianvtran/local-operator-design",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "algorithm": "sha256",
   "scope": "every file tracked by git except digests.json itself; a consumer's lock records the kit ref plus the per-file hashes below",
   "files": {
     ".github/workflows/ci.yml": "7835363e02d1bea9bd0b5d32d7d8bd93762ca3bddd0a039ae9a2f34f6809e277",
     "LICENSE": "a6668f1445a2abbecaa08e48d8137b0a691958618c6ce9dd95fb5b77d87653a8",
-    "README.md": "1f2a453a6d2a4c11b8498064b734ce3095ddecfdafb39b7e146ca8c13fd6f379",
+    "README.md": "215cf91f02bff058bc8a8bb39478a0b5eff3b201744745f8a8318cccccaf9708",
     "app-family.json": "c6b91c441ee09f70d869881d5c7053c3abb9ce2aa7016a7bb77eed4c5527c6e6",
     "components.md": "0c9fdf1ba46b8b26320a9d0611c846e0546c5908b26db90a1d44a1234b765851",
     "contrast-contract.mjs": "efba65759c094395c64f77002d588c847fb4807535a789b8174d5a2891042885",
@@ -14,7 +14,7 @@
     "handoff-local-operator-ui.md": "88fa5fdd7df806a207f50a481796cfeefcf8f66219f66c9fce3f1932dd3db13c",
     "motion.md": "e152b4d78981bfa4db43bd81811a33511316045d347c70611a318864fe941ee8",
     "tokens.css": "297559c9b8698d6e390b737686683a4b2bd64f8f2490f2fe84703c1df7c9a5d5",
-    "tokens.json": "2747c04e2eeccf67ef0a91f36e0c6785d307cd6210f129c084d4d19212184bf7",
+    "tokens.json": "229c599407b47b61c26938c3ef75eab207b8185f1a8e85f28465172de5a0b74a",
     "tokens.md": "04d4481a9b949c25220a757bd9989901d49c233c72f7f413986e8878fe27b3de",
     "tools/check-divergences.mjs": "3d23f67eb0f297b37ce27e2915c69000d2c21826be49cbb5b22065d7bd120e5a",
     "tools/digests.mjs": "ea8a864303673fbfcf02577cabd0c6a08cbdf336433b59cc4244afc3b26a0178",

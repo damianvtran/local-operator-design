@@ -50,12 +50,13 @@ verified byte-identical to the split commit's. Nothing else changed;
 
 ### Version and releases
 
-`tokens.json` `$meta.version` continues the kit's own lineage: **1.1.0** is the
-version inherited from the site. This repository's first release is **v1.2.0**
-— the release that carries the app-family file and the divergence register; it
-is cut after an independent review round, and until it exists, consumers pin a
-commit. Consumers track **tags**; a pin bump (tag or commit) is a deliberate
-change in the consumer, with its reason recorded — never a floating fetch.
+`tokens.json` `$meta.version` continues the kit's own lineage: **1.1.0** was
+the version inherited from the site, and this repository materialises **1.2.0**
+— the first release, carrying the app-family file and the divergence register.
+The **v1.2.0** tag is cut after an independent review round; until it exists,
+consumers pin a commit. Consumers track **tags**; a pin bump (tag or commit) is
+a deliberate change in the consumer, with its reason recorded — never a
+floating fetch.
 
 ### Consuming this kit: pin and lock
 
