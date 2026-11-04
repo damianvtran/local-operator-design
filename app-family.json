@@ -72,6 +72,7 @@
     "localOperatorDark": {
       "id": "localOperatorDark",
       "name": "Local Operator Dark",
+      "descriptionKey": "ui.settings.appearance.theme.local_operator_dark",
       "mode": "dark",
       "values": {
         "canvas": "#1d1b17",
@@ -117,6 +118,7 @@
     "localOperatorLight": {
       "id": "localOperatorLight",
       "name": "Local Operator Light",
+      "descriptionKey": "ui.settings.appearance.theme.local_operator_light",
       "mode": "light",
       "values": {
         "canvas": "#f2ede3",

@@ -55,11 +55,11 @@ the version inherited from the site, and this repository materialises **1.2.0**
 — the first release, carrying the app-family file and the divergence register.
 **1.3.0** re-extracts the app family after the desktop app's darker-grounds pass
 (its dark band moved from L\* 12–22 to 9–15 on 2026-11-03, so
-`localOperatorDark`'s grounds and washes moved), and records the one dark value
-that parted from the site as the `dark-ground-ramp` divergence. Each tag is cut
-after an independent review round; until it exists, consumers pin a commit. Consumers track **tags**; a pin bump (tag or commit) is
-a deliberate change in the consumer, with its reason recorded — never a
-floating fetch.
+`localOperatorDark`'s grounds and washes moved), and records the four dark
+washes that parted from the site as the `dark-ground-ramp` divergence. Each tag
+is cut after an independent review round; until it exists, consumers pin a
+commit. Consumers track **tags**; a pin bump (tag or commit) is a deliberate
+change in the consumer, with its reason recorded — never a floating fetch.
 
 ### Consuming this kit: pin and lock
 
