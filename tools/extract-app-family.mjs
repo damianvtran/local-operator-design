@@ -66,7 +66,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
    updates every downstream check (and the divergence register's assertions). */
 const PIN = {
 	repo: "damianvtran/local-operator-ui",
-	ref: "574fe4840bef2ac5866eca36a14ea40631a802ea",
+	ref: "096c791a471fbf9bd5f7d3f02771a7202c916530",
 	palette: "src/renderer/src/shared/themes/palettes/local-operator.ts",
 	contract: "src/renderer/src/shared/themes/palette-contract.ts",
 };
