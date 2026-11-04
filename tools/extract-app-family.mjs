@@ -62,10 +62,11 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 /* ---- the pin ------------------------------------------------------------
    One ref for both files. The ref is a commit reachable from the UI
-   repository's main line (a brand change pins its UI feature commit before
+   repository's main line. A brand change pins its UI feature commit before
    that commit merges, because the UI gate refuses the edit until the kit
-   moves; the UI PR then lands it as a merge commit, never rebased); moving it is a deliberate act that re-issues the extraction and
-   updates every downstream check (and the divergence register's assertions). */
+   moves; the UI PR then lands it as a merge commit, never rebased. Moving
+   the pin is a deliberate act that re-issues the extraction and updates
+   every downstream check (and the divergence register's assertions). */
 const PIN = {
 	repo: "damianvtran/local-operator-ui",
 	ref: "096c791a471fbf9bd5f7d3f02771a7202c916530",

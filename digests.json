@@ -18,7 +18,7 @@
     "tokens.md": "04d4481a9b949c25220a757bd9989901d49c233c72f7f413986e8878fe27b3de",
     "tools/check-divergences.mjs": "3d23f67eb0f297b37ce27e2915c69000d2c21826be49cbb5b22065d7bd120e5a",
     "tools/digests.mjs": "ea8a864303673fbfcf02577cabd0c6a08cbdf336433b59cc4244afc3b26a0178",
-    "tools/extract-app-family.mjs": "af39c0be5bc65fdb737105cb663d117ae98a83739b5b8a971171654142421796",
+    "tools/extract-app-family.mjs": "da6c6b7d0fe7d1d54577842c8ad1edfb82065eaa010fd9ac0840ee3b05aa9376",
     "tools/generate-tokens.mjs": "ccaeae64af3fed3c9df890b9e580ec3518cfd8b2dec4ce1fb9199b93eb0e0d00",
     "tools/tokens-css.template": "75373f9a7c167274a961081f3a909cb14c6967033ac17814df0a901a998054a1",
     "typography.md": "fb09219cbf47aafee43eb761d2e279cbba2b9163a0ca5c921a3477e7b2b63aaf",
