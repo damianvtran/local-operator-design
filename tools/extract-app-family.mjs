@@ -61,12 +61,15 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 /* ---- the pin ------------------------------------------------------------
-   One ref for both files. The ref is a commit on the UI repository's main
-   line; moving it is a deliberate act that re-issues the extraction and
-   updates every downstream check (and the divergence register's assertions). */
+   One ref for both files. The ref is a commit reachable from the UI
+   repository's main line. A brand change pins its UI feature commit before
+   that commit merges, because the UI gate refuses the edit until the kit
+   moves; the UI PR then lands it as a merge commit, never rebased. Moving
+   the pin is a deliberate act that re-issues the extraction and updates
+   every downstream check (and the divergence register's assertions). */
 const PIN = {
 	repo: "damianvtran/local-operator-ui",
-	ref: "574fe4840bef2ac5866eca36a14ea40631a802ea",
+	ref: "096c791a471fbf9bd5f7d3f02771a7202c916530",
 	palette: "src/renderer/src/shared/themes/palettes/local-operator.ts",
 	contract: "src/renderer/src/shared/themes/palette-contract.ts",
 };
@@ -247,10 +250,25 @@ try {
 		if (!mod[e]) throw new Error(`palette module did not export ${e}`);
 	}
 
+	/* The picker copy is published as whichever field the source carries.
+	   The UI moved it from an English `description` to an i18n
+	   `descriptionKey` (resolved against its message catalogues), and a
+	   destructure of the old name silently yielded `undefined`, which
+	   JSON.stringify then dropped: the incomplete-but-valid file this script's
+	   header forbids. So exactly one of the two must be a string, and the
+	   extraction fails otherwise. Consumers compare id, name, mode and values;
+	   the copy field is informational. */
 	const paletteJson = (def) => {
-		const { id, name, description, palette } = def;
+		const { id, name, description, descriptionKey, palette } = def;
 		const { mode, ...values } = palette;
-		return { id, name, description, mode, values };
+		const copy =
+			typeof descriptionKey === "string"
+				? { descriptionKey }
+				: typeof description === "string"
+					? { description }
+					: null;
+		if (!copy) throw new Error(`palette ${id} carries neither a description nor a descriptionKey`);
+		return { id, name, ...copy, mode, values };
 	};
 	const dark = paletteJson(mod.localOperatorDark);
 	const light = paletteJson(mod.localOperatorLight);
